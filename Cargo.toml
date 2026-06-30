@@ -1,0 +1,15 @@
+[package]
+name = "sbpf-critical-path"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.90"
+description = "Critical path analysis for sBPF programs — example use of sbpf-ir and sbpf-transform"
+
+[dependencies]
+anyhow = "1.0"
+clap = { version = "4", features = ["derive"] }
+either = "1"
+sbpf-common = { git = "ssh://git@github.com/rishavmehra/sbpf.git", branch = "feat/cfg-overlay" }
+sbpf-disassembler = { git = "ssh://git@github.com/rishavmehra/sbpf.git", branch = "feat/cfg-overlay" }
+sbpf-ir = { git = "ssh://git@github.com/rishavmehra/sbpf.git", branch = "feat/cfg-overlay" }
+sbpf-transform = { git = "ssh://git@github.com/rishavmehra/sbpf.git", branch = "feat/cfg-overlay" }
