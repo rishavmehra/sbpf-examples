@@ -1,4 +1,4 @@
-# sbpf-critical-path
+# sbpf-example
 
 Finds the critical (longest) path through each function in an sBPF program and renders a highlighted CFG as a DOT graph.
 
