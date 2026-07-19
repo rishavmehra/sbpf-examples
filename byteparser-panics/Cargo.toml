@@ -1,0 +1,14 @@
+[package]
+name = "byteparser-panics"
+version = "0.1.0"
+edition = "2021"
+description = "Live reproductions of sbpf-linker byteparser.rs panics through the real linker library"
+
+# Depend on the real linker crate so the demo runs the ACTUAL code path
+# (`link_program` -> `parse_bytecode`) that the `sbpf-linker` binary runs.
+[dependencies]
+sbpf-linker = { git = "ssh://git@github.com/blueshift-gg/sbpf-linker.git" }
+object = { version = "0.39.1", features = ["write"] }
+
+# Isolate this scratch crate from the parent `sbpf-example` package.
+[workspace]
