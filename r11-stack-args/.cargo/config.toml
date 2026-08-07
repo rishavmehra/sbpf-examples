@@ -1,0 +1,6 @@
+# The global ~/.cargo/config.toml already provides linker/arch/export/cpu for
+# target.bpfel-unknown-none. cargo concatenates target.*.rustflags across config
+# files, so we must NOT repeat them here (duplicate --arch is rejected by
+# sbpf-linker). build-std is idempotent, so it's safe to keep.
+[unstable]
+build-std = ["core", "alloc"]
