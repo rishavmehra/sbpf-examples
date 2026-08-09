@@ -1,0 +1,14 @@
+[package]
+name = "sol-memset-repro"
+version = "0.1.0"
+edition = "2021"
+description = "Minimal reproducer"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[profile.release]
+lto = "fat"
+opt-level = 3
+
+[workspace]
