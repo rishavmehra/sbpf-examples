@@ -4,7 +4,7 @@ Compares how the two compilers build p-token's instruction dispatch.
 
 | | |
 |---|---|
-| toolchain | `cargo-build-sbf` — rustc 1.89, LLVM 20.1.7, target `sbf-solana-solana` |
+| toolchain | `cargo-build-sbf 4.3.0` — platform-tools v1.57, target `sbf-solana-solana` |
 | upstream | `cargo-build-sbpf` — rustc 1.100 nightly, LLVM 23.1.0, target `bpfel-unknown-none` + `sbpf-linker` |
 
 ## Result
@@ -16,6 +16,27 @@ Compares how the two compilers build p-token's instruction dispatch.
 | static instructions | 113 | 124 |
 
 Upstream costs **+471 CU (+29%)**.
+
+CU measured on the artifacts in this folder with the local SVM runner.
+
+## Prebuilt artifacts
+
+Checked in so you can read the code without building anything:
+
+| file | what it is |
+|---|---|
+| `toolchain.so` | built with `cargo-build-sbf` |
+| `upstream.so` | built with `cargo-build-sbpf` |
+| `toolchain.asm` | disassembly of `toolchain.so` |
+| `upstream.asm` | disassembly of `upstream.so` |
+
+Start here:
+
+```bash
+diff -y --width=90 \
+  <(sed -n '/^entrypoint:/,/exit/p' toolchain.asm) \
+  <(sed -n '/^entrypoint:/,/exit/p' upstream.asm)
+```
 
 ## What this reproduces from p-token
 
@@ -94,15 +115,15 @@ diff -y --width=90 \
 
 ```
 TOOLCHAIN (9 per iteration)      UPSTREAM (15 per iteration)
-                                   w1 = w7
-                                   w1 += w6
-  r0 ^= r6                         w2 = w1
-  r1 = r7                          w2 &= 0xfe
-  r1 += r6                         w2 >>= 0x1
-  r1 &= 0xff                       w2 *= 0xb3     <- the same
-  r1 %= 0x2e   <- one divide       w2 >>= 0xc     <-   % 46
-  r2 = r0                          w2 *= 0x2e     <-
-  call fn_0150                     w1 -= w2       <-
+                                   r1 = r7
+                                   r1 += r6
+  r0 ^= r6                         r2 = r1
+  r1 = r7                          r2 &= 0xfe
+  r1 += r6                         r2 >>= 0x1
+  r1 &= 0xff                       r2 *= 0xb3     <- the same
+  r1 %= 0x2e   <- one divide       r2 >>= 0xc     <-   % 46
+  r2 = r0                          r2 *= 0x2e     <-
+  call fn_0000                     r1 -= r2       <-
   r6 += 0x1                        r0 ^= r6
   if r6 != 0x40 goto ...           r2 = r0
                                    call fn_00b8
@@ -115,29 +136,29 @@ Upstream replaced the divide with multiply-and-shift. On a normal CPU that is a
 good trade — dividing costs about 40 cycles, multiplying about 3. On SBF every
 instruction costs exactly 1 CU, so it swapped 1 instruction for 7 and lost.
 
-Confirm it in the traces:
+The executed traces confirm it:
 
-```bash
-T=../../out/traces/toolchain-01-dispatch/*.trace
-U=../../out/traces/upstream-01-dispatch/*.trace
+| opcode | toolchain | upstream |
+|---|---:|---:|
+| `mod64` | **64** | **0** |
+| `mul64` | 6 | **134** |
+| `rsh64` | 9 | **137** |
 
-grep -c mod64 $T    # 64  — one divide per iteration
-grep -c mod64 $U    # 0   — none
-grep -c mul32 $U    # 128 — two multiplies per iteration
-grep -c rsh32 $U    # 128 — two shifts per iteration
-```
+One divide per iteration on the toolchain side; none on upstream, replaced by
+two multiplies and two shifts each time round (128 of each, plus a handful
+elsewhere).
 
 6 extra instructions x 64 iterations = **+384 CU**.
 
 ### The match: +87 CU
 
 ```bash
-sed -n '/^fn_0150:/,$p' toolchain.asm     # toolchain
+sed -n '/^fn_0000:/,/^entrypoint:/p' toolchain.asm   # toolchain
 sed -n '/^fn_00b8:/,$p' upstream.asm      # upstream
 ```
 
-Upstream uses 32-bit compares (`jeq32`, `jsgt32`) and a longer compare chain.
-This is the part that maps to real p-token code.
+Both build a compare chain over the discriminator. This is the part that maps
+to real p-token code — the rest of the gap lives here.
 
 ## What to take from this
 
