@@ -1,0 +1,85 @@
+using Cargo config at /home/ubuntu/sbpf-examples/ptoken-research-v2/cases/01-approve/.cargo/config.toml
+   Compiling compiler_builtins v0.1.160 (/home/ubuntu/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/compiler-builtins/compiler-builtins)
+   Compiling core v0.0.0 (/home/ubuntu/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core)
+   Compiling alloc v0.0.0 (/home/ubuntu/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc)
+   Compiling five8_core v0.1.2
+   Compiling sha2-const-stable v0.1.0
+   Compiling pinocchio v0.9.3
+   Compiling solana-compiler-builtins v0.1.0 (https://github.com/blueshift-gg/solana-compiler-builtins?branch=main#fd7ac4a9)
+   Compiling five8_const v0.1.4
+   Compiling pinocchio-pubkey v0.3.0
+   Compiling pinocchio-token-interface v0.0.0 (/home/ubuntu/token/pinocchio/interface)
+warning: unstable feature specified for `-Ctarget-feature`: `allows-misaligned-mem-access`
+  |
+  = note: this feature is not stably supported; its behavior can change in the future
+  = note: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+  = note: for more information, see issue #162235 <https://github.com/rust-lang/rust/issues/162235>
+
+warning: `pinocchio-token-interface` (lib) generated 1 warning
+   Compiling ptoken-approve-repro v0.1.0 (/home/ubuntu/sbpf-examples/ptoken-research-v2/cases/01-approve)
+warning: unexpected `cfg` condition value: `solana`
+  --> src/lib.rs:23:1
+   |
+23 | no_allocator!();
+   | ^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `target_os` are: `aix`, `amdhsa`, `android`, `cuda`, `cygwin`, `dragonfly`, `emscripten`, `espidf`, `freebsd`, `fuchsia`, `haiku`, `helenos`, `hermit`, `horizon`, `hurd`, `illumos`, `ios`, `l4re`, `linux`, `lynxos178`, `macos`, `managarm`, `motor`, `netbsd`, `none`, `nto`, `nuttx`, `openbsd`, `ps3`, `psp`, `psx`, `qnx`, `qurt`, `redox`, and `rtems` and 16 more
+   = note: using a cfg inside a macro will use the cfgs from the destination crate and not the ones from the defining crate
+   = help: try referring to `no_allocator` crate for guidance on how handle this unexpected cfg
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: `#[warn(unexpected_cfgs)]` on by default
+   = note: this warning originates in the macro `no_allocator` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition value: `solana`
+  --> src/lib.rs:23:1
+   |
+23 | no_allocator!();
+   | ^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `target_os` are: `aix`, `amdhsa`, `android`, `cuda`, `cygwin`, `dragonfly`, `emscripten`, `espidf`, `freebsd`, `fuchsia`, `haiku`, `helenos`, `hermit`, `horizon`, `hurd`, `illumos`, `ios`, `l4re`, `linux`, `lynxos178`, `macos`, `managarm`, `motor`, `netbsd`, `none`, `nto`, `nuttx`, `openbsd`, `ps3`, `psp`, `psx`, `qnx`, `qurt`, `redox`, and `rtems` and 16 more
+   = note: using a cfg inside a macro will use the cfgs from the destination crate and not the ones from the defining crate
+   = help: try referring to `no_allocator` crate for guidance on how handle this unexpected cfg
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: this warning originates in the macro `no_allocator` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition value: `solana`
+  --> src/lib.rs:24:1
+   |
+24 | nostd_panic_handler!();
+   | ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: expected values for `target_os` are: `aix`, `amdhsa`, `android`, `cuda`, `cygwin`, `dragonfly`, `emscripten`, `espidf`, `freebsd`, `fuchsia`, `haiku`, `helenos`, `hermit`, `horizon`, `hurd`, `illumos`, `ios`, `l4re`, `linux`, `lynxos178`, `macos`, `managarm`, `motor`, `netbsd`, `none`, `nto`, `nuttx`, `openbsd`, `ps3`, `psp`, `psx`, `qnx`, `qurt`, `redox`, and `rtems` and 16 more
+   = note: using a cfg inside a macro will use the cfgs from the destination crate and not the ones from the defining crate
+   = help: try referring to `nostd_panic_handler` crate for guidance on how handle this unexpected cfg
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: this warning originates in the macro `nostd_panic_handler` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: linker stderr: unable to open LLVM shared lib /home/ubuntu/.rustup/toolchains/nightly-2026-09-05-x86_64-unknown-linux-gnu/lib/libLLVM-23-rust-1.100.0-nightly.so: dlopen failed
+         WARN ignoring file /home/ubuntu/sbpf-examples/ptoken-research-v2/cases/01-approve/target/bpfel-unknown-none/release/build/ptoken-approve-repro/b1646616f70cac37/out/rustcr2nnQj/symbols.o: no embedded bitcode
+         WARN ignoring archive item lib.rmeta: no embedded bitcode
+         WARN ignoring archive item lib.rmeta-link: no embedded bitcode
+         WARN ignoring archive item lib.rmeta: no embedded bitcode
+         WARN ignoring archive item lib.rmeta-link: no embedded bitcode
+         WARN ignoring archive item lib.rmeta: no embedded bitcode
+         WARN ignoring archive item lib.rmeta-link: no embedded bitcode
+         WARN ignoring archive item lib.rmeta: no embedded bitcode
+         WARN ignoring archive item lib.rmeta-link: no embedded bitcode
+         WARN ignoring archive item lib.rmeta: no embedded bitcode
+         WARN ignoring archive item lib.rmeta-link: no embedded bitcode
+         WARN ignoring archive item lib.rmeta: no embedded bitcode
+         WARN ignoring archive item lib.rmeta-link: no embedded bitcode
+         WARN ignoring archive item lib.rmeta: no embedded bitcode
+         WARN ignoring archive item lib.rmeta-link: no embedded bitcode
+         WARN ignoring archive item lib.rmeta: no embedded bitcode
+         WARN ignoring archive item lib.rmeta-link: no embedded bitcode
+         WARN ignoring archive item lib.rmeta: no embedded bitcode
+         WARN ignoring archive item lib.rmeta-link: no embedded bitcode
+         WARN ignoring archive item lib.rmeta: no embedded bitcode
+         WARN ignoring archive item lib.rmeta-link: no embedded bitcode
+  |
+  = note: `#[warn(linker_messages)]` on by default
+
+warning: linker stdout: "/home/ubuntu/sbpf-examples/ptoken-research-v2/cases/01-approve/target/bpfel-unknown-none/release/build/ptoken-approve-repro/b1646616f70cac37/out/libptoken_approve_repro.so"
+
+warning: `ptoken-approve-repro` (lib) generated 7 warnings (2 duplicates)
+    Finished `release` profile [optimized] target(s) in 51.57s

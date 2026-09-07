@@ -1,0 +1,12 @@
+   Compiling compiler_builtins v0.1.160 (/home/ubuntu/.cache/solana/v1.57/platform-tools/rust/lib/rustlib/src/rust/library/compiler-builtins/compiler-builtins)
+   Compiling core v0.0.0 (/home/ubuntu/.cache/solana/v1.57/platform-tools/rust/lib/rustlib/src/rust/library/core)
+   Compiling alloc v0.0.0 (/home/ubuntu/.cache/solana/v1.57/platform-tools/rust/lib/rustlib/src/rust/library/alloc)
+   Compiling five8_core v0.1.2
+   Compiling pinocchio v0.9.3
+   Compiling sha2-const-stable v0.1.0
+   Compiling solana-compiler-builtins v0.1.0 (https://github.com/blueshift-gg/solana-compiler-builtins?branch=main#fd7ac4a9)
+   Compiling five8_const v0.1.4
+   Compiling pinocchio-pubkey v0.3.0
+   Compiling pinocchio-token-interface v0.0.0 (/home/ubuntu/token/pinocchio/interface)
+   Compiling ptoken-approve-repro v0.1.0 (/home/ubuntu/sbpf-examples/ptoken-research-v2/cases/01-approve)
+    Finished `release` profile [optimized] target(s) in 1m 09s
