@@ -1,0 +1,19 @@
+[package]
+name = "divide-shift-add-repro"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+codegen-units = 1
+lto = "fat"
+opt-level = 3
+panic = "abort"
+
+[workspace]
+
+[dependencies]
+solana-compiler-builtins = { git = "https://github.com/rishavmehra/solana-compiler-builtins", branch = "fix/remove-multi3-asm-return" }
