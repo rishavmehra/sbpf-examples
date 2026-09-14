@@ -1,0 +1,16 @@
+[package]
+name = "pubkey-compare-normal-eq"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+name = "pubkey_compare_normal_eq"
+crate-type = ["cdylib"]
+
+[dependencies]
+pinocchio = "0.9.3"
+solana-compiler-builtins = { git = "https://github.com/rishavmehra/solana-compiler-builtins", rev = "2d3d51ce722208aab349472a95bb8f9b5b7be98a" }
+
+[workspace]
+
